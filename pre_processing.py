@@ -17,8 +17,6 @@ class PreProcessing:
     LANGUAGE = "portuguese"
 
     def __init__(self, nnp=None, terms=None, patterns=None, language=LANGUAGE):
-        if not nnp:
-            nnp = []
         self.nnp = nnp
         self.terms = terms
         self.patterns = patterns

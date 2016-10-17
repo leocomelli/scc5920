@@ -82,7 +82,7 @@ class TestPreProcessing(unittest.TestCase):
         tokens = p.clean(text)
         tokens = p.stem(tokens)
 
-        bow = p.build_bow(tokens)
+        bow, bfn = p.build_bow(tokens)
         self.assertEquals("(7, 6)", bow.shape.__str__())
 
     def test_should_compute_tdidf(self):
