@@ -1,6 +1,4 @@
 \d+
-dados\sconfirmados:.*$
-protocolo:.*$
-cargosetor:.*$
-telefone:.*$
-email:.*$
+_+
+t\d+
+\d+h\d+
