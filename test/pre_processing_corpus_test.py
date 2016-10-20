@@ -1,6 +1,5 @@
 import unittest
 import numpy as np
-from nltk.corpus import machado
 from pre_processing import PreProcessing
 from load_data import LoadData
 
@@ -23,17 +22,18 @@ class TestPreProcessingCorpus(unittest.TestCase):
         for d in data.values():
             tokens += p.clean_and_stem(d)
 
-        tokens = tokens[:180000]
-
         bow, bow_features_names = p.build_bow(tokens)
         dist = np.sum(bow.toarray(), axis=0)
         tbow = {}
         for term, count in zip(bow_features_names, dist):
             tbow[term] = count
 
-        print len(tbow)
         import operator
-        print sorted(tbow.items(), key=operator.itemgetter(1), reverse=True)
+        with open("bow", "w") as f:
+            f.write(str(len(tbow)))
+            f.write(str(sorted(tbow.items(), key=operator.itemgetter(1), reverse=True)))
 
-        terms = p.compute_tfidf(data.values(), top_n=10, eliminate_zeros=True)
-        print terms
+        terms = p.compute_tfidf(data.values(), eliminate_zeros=True)
+        with open("terms", "w") as f:
+            f.write(str(terms))
+
